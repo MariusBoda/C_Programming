@@ -27,6 +27,7 @@
 
 void draw_triangle(unsigned int size)
 {
+<<<<<<< HEAD
     for (unsigned int row = 0; row < size; row++) {
         // Print the left triangle of '.'
         for (unsigned int col = 0; col < size - row - 1; col++) {
@@ -43,4 +44,16 @@ void draw_triangle(unsigned int size)
     }
 
     
+=======
+   for (int row = 0; row < size; ++row) {
+
+        for (int i = 0; i < size - row - 1; i++) {
+            printf(".");
+        }
+        for (int j = 0; j <= row; j++) {
+            printf("#");
+        }
+        printf("\n");
+    }
+>>>>>>> 8abd40a9ccac035fbf86c58c71ccdeb2745f3a80
 }
