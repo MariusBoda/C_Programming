@@ -27,6 +27,7 @@
 
 void draw_triangle(unsigned int size)
 {
+<<<<<<< HEAD:Module 3/T3.4 Triangle/src/source.c
 <<<<<<< HEAD
     for (unsigned int row = 0; row < size; row++) {
         // Print the left triangle of '.'
@@ -46,11 +47,14 @@ void draw_triangle(unsigned int size)
     
 =======
    for (int row = 0; row < size; ++row) {
+=======
+   for (unsigned int row = 0; row < size; ++row) {
+>>>>>>> 8dfcf650e3f43bd2e6056fe0fa5af2689d3a433e:Module_3/T3.4 Triangle/src/source.c
 
-        for (int i = 0; i < size - row - 1; i++) {
+        for (unsigned int i = 0; i < size - row - 1; i++) {
             printf(".");
         }
-        for (int j = 0; j <= row; j++) {
+        for (unsigned int j = 0; j <= row; j++) {
             printf("#");
         }
         printf("\n");
