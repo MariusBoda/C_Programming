@@ -54,5 +54,36 @@
 
 void simple_math(void)
 {
-    
+    float number1, number2, result;
+    char operator;
+
+    if (scanf("%f %c %f", &number1, &operator, &number2) == 3) {
+        if (operator == '+') {
+        result = number1 + number2;
+        } 
+        else if (operator == '-') {
+        result = number1 - number2;
+        } 
+        else if (operator == '*') {
+        result = number1 * number2;
+        } 
+        else if (operator == '/') {
+        if (number2 == 0) {
+            printf("ERR\n");
+            return;
+        }
+        result = number1 / number2;
+        } 
+        else {
+        printf("ERR\n");
+        return;
+        } 
+    }
+
+    else {  
+        printf("ERR\n");
+        return;
+    }
+
+    printf("%.1f\n", result);
 }

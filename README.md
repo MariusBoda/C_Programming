@@ -1,3 +1,4 @@
-# C_Programming
+# C++ Programming Summer Course
 
-#TESTING
+This repository is used for my assignments of the C++ Programming summer course at Aalto University. Completed in the summer of 2023!
+
