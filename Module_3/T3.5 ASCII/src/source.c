@@ -41,5 +41,22 @@
 
 void ascii_chart(char min, char max)
 {
+    int i;
+    int col = 0;
+    
+    for (i = min; i <= max; i++) {
+
+        
+        printf("%3d 0x%02x %c", i, i, isprint(i) ? i : '?');
+        col++;
+
+        if (col == 4) {
+            printf("\n");
+            col = 0;}
+        else {
+            printf("\t");
+        };
+    }
+    
     
 }
