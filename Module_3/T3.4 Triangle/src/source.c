@@ -27,7 +27,29 @@
 
 void draw_triangle(unsigned int size)
 {
+<<<<<<< HEAD:Module 3/T3.4 Triangle/src/source.c
+<<<<<<< HEAD
+    for (unsigned int row = 0; row < size; row++) {
+        // Print the left triangle of '.'
+        for (unsigned int col = 0; col < size - row - 1; col++) {
+            printf(".");
+        }
+
+        // Print the right triangle of '#'
+        for (unsigned int col = 0; col < row + 1; col++) {
+            printf("#");
+        }
+
+        // Print a newline character at the end of each row
+        printf("\n");
+    }
+
+    
+=======
+   for (int row = 0; row < size; ++row) {
+=======
    for (unsigned int row = 0; row < size; ++row) {
+>>>>>>> 8dfcf650e3f43bd2e6056fe0fa5af2689d3a433e:Module_3/T3.4 Triangle/src/source.c
 
         for (unsigned int i = 0; i < size - row - 1; i++) {
             printf(".");
@@ -37,4 +59,5 @@ void draw_triangle(unsigned int size)
         }
         printf("\n");
     }
+>>>>>>> 8abd40a9ccac035fbf86c58c71ccdeb2745f3a80
 }
