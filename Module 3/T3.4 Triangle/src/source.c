@@ -27,5 +27,20 @@
 
 void draw_triangle(unsigned int size)
 {
+    for (unsigned int row = 0; row < size; row++) {
+        // Print the left triangle of '.'
+        for (unsigned int col = 0; col < size - row - 1; col++) {
+            printf(".");
+        }
+
+        // Print the right triangle of '#'
+        for (unsigned int col = 0; col < row + 1; col++) {
+            printf("#");
+        }
+
+        // Print a newline character at the end of each row
+        printf("\n");
+    }
+
     
 }
