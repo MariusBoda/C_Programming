@@ -27,25 +27,52 @@
 
 
 
-int validateHeader(uint32_t header)
-{
-    
-    return -1;
+int validateHeader(uint32_t header){
+
+    uint32_t sync = (header >> 24) & 0xFF;
+    uint32_t ack = (header >> 23) & 0x01;
+    uint32_t v = (header >> 22) & 0x01;
+    uint32_t type = (header >> 22) & 0x01;
+    uint32_t source = (header >> 16) & 0xFFFF;
+    uint32_t dest = (header >> 0) & 0xFFFF;
+
+    if(sync == 0x2a & ((ack & v) | (!ack & type != 0)) & source != 0 & dest != 0 & source != dest){
+        return 1;
+    }
+    else {
+        return 0;
+    }
 }
 int getFrameId(uint32_t header)
 {
-    
-    return -2;
+
+    uint32_t frameId = (header >> 16) & 0xFFFF;
+
+    if(validateHeader(header) == 1){
+        return frameId;
+    } else { return -1; }
 }
+
 int getFrameType(uint32_t header)
-{
-    
-    return -2;
+{   uint32_t ack = (header >> 23) & 0x01;
+    uint32_t type = (header >> 22) & 0x01;
+    if(validateHeader(header) == 0) {
+        return -1;
+    }
+    else if(ack == 0) {return 0;}
+
+    else {
+        return type;
+    }
 }
 int getSourceAddress(uint32_t header)
 {
-    
-    return -2;
+    if(validateHeader(header) == 0) {
+        return -1;
+    }
+    else {
+        return (header >> 16) & 0xFFFF;
+    }
 }
 
 uint32_t createAckHeader(int destAddress, int sourceAddress, uint8_t frameId, char valid)
