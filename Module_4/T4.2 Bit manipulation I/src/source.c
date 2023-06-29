@@ -6,6 +6,10 @@ of the input value **v**. Rest of the two highest significant bits must be reset
 */
 
 // define sixBits function here
-unsigned char sixBits(unsigned char v)
-{
-    }
+unsigned char sixBits(unsigned char v){
+
+    #define BIT_MASK (0x3F)
+
+    return v & BIT_MASK;
+
+}

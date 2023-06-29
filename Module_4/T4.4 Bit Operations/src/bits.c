@@ -22,6 +22,8 @@
  */
 uint32_t op_bit_set(uint32_t data, int i) {
   
+  #define BITMASK (1 << i)
+  data = data | BITMASK;
   return data;
 }
 
@@ -45,6 +47,8 @@ uint32_t op_bit_set(uint32_t data, int i) {
 
 uint32_t op_bit_clear(uint32_t data, int i) {
   
+  #define BITMASK (1 << i)
+  data = data & ~BITMASK;
   return data;
 }
 
@@ -68,6 +72,8 @@ uint32_t op_bit_clear(uint32_t data, int i) {
 
 uint32_t op_bit_toggle(uint32_t data, int i) {
   
+  #define BITMASK (1 << i)
+  data = data ^ BITMASK;
   return data;
 }
 
@@ -91,6 +97,10 @@ uint32_t op_bit_toggle(uint32_t data, int i) {
 
 int op_bit_get(uint32_t data, int i) {
   
+  #define BITMASK (1 << i)
+  if (data & BITMASK) {
+    return 1;
+  } else return 0;
 }
 
 /* DESCRIPTION:
@@ -120,4 +130,13 @@ int op_bit_get(uint32_t data, int i) {
 
 void op_print_byte(unsigned char b) {
   
+  #define BYTE
+  #define BITMASK (1 << i)
+  for (int i = 7; i >= 0; i--) {
+    if (b & BITMASK) {
+      printf("1");
+    } else {
+      printf("0");
+    }
+  }
 }
