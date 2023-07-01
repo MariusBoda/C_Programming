@@ -29,24 +29,24 @@
 
 int validateHeader(uint32_t header){
 
-    uint32_t sync = (header >> 24) & 0xFF;
-    uint32_t ack = (header >> 23) & 0x01;
-    uint32_t v = (header >> 22) & 0x01;
-    uint32_t type = (header >> 22) & 0x01;
-    uint32_t source = (header >> 16) & 0xFFFF;
-    uint32_t dest = (header >> 0) & 0xFFFF;
+    uint32_t sync = (header >> 0) & 0x3F;
+    uint32_t ack = (header >> 6) & 0x01;
+    uint32_t v = (header >> 7) & 0x01;
+    uint32_t type = (header >> 8) & 0x07;
+    //uint32_t frameId = (header >> 11) & 0x1F;
+    uint32_t source = (header >> 16) & 0xFF;
+    uint32_t dest = (header >> 24) & 0xFF;
 
-    if(sync == 0x2a & ((ack & v) | (!ack & type != 0)) & source != 0 & dest != 0 & source != dest){
+    if ((sync == 0x2a) && ((ack && v) | (!ack && (type != 0))) & (source != 0) & (dest != 0) & (source != dest)) {
         return 1;
-    }
-    else {
+    } else {
         return 0;
     }
 }
 int getFrameId(uint32_t header)
 {
 
-    uint32_t frameId = (header >> 16) & 0xFFFF;
+    uint32_t frameId = (header >> 11) & 0x1F;
 
     if(validateHeader(header) == 1){
         return frameId;
@@ -54,15 +54,15 @@ int getFrameId(uint32_t header)
 }
 
 int getFrameType(uint32_t header)
-{   uint32_t ack = (header >> 23) & 0x01;
-    uint32_t type = (header >> 22) & 0x01;
+{   uint32_t ack = (header >> 6) & 0x01;
+    uint32_t type = (header >> 8) & 0x07;
     if(validateHeader(header) == 0) {
         return -1;
     }
-    else if(ack == 0) {return 0;}
+    else if(ack == 0) {return type;}
 
     else {
-        return type;
+        return 0;
     }
 }
 int getSourceAddress(uint32_t header)
@@ -71,18 +71,28 @@ int getSourceAddress(uint32_t header)
         return -1;
     }
     else {
-        return (header >> 16) & 0xFFFF;
+        return (header >> 16) & 0xFF;
     }
 }
 
-uint32_t createAckHeader(int destAddress, int sourceAddress, uint8_t frameId, char valid)
-{
-    
-    return 0;
+uint32_t createAckHeader(int destAddress, int sourceAddress, uint8_t frameId, char valid) {
+    uint32_t header = 0;
+    header = (header << 24) | 0x2a;
+    header = (header << 16) | (sourceAddress & 0xFF);
+    header = (header << 24) | (destAddress & 0xFF);
+    header = (header << 11) | (frameId & 0x1F);
+    header = (header << 7) | (valid & 0x07);
+    return header;
 }
+
 
 uint32_t createHeader(int destAddress, int sourceAddress, uint8_t frameId, uint8_t type)
 {
-    
-    return 0;
+    uint32_t header = 0;
+    header = (header << 24) | 0x2a;
+    header = (header << 16) | (sourceAddress & 0xFF);
+    header = (header << 24) | (destAddress & 0xFF);
+    header = (header << 11) | (frameId & 0x1F);
+    header = (header << 8) | (type & 0x07);
+    return header;
 }
