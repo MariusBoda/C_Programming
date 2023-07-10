@@ -35,7 +35,6 @@ int validateHeader(uint32_t header){
     uint32_t type = (header >> 22) & 0x01;
     uint32_t source = (header >> 16) & 0xFFFF;
     uint32_t dest = (header >> 0) & 0xFFFF;
-
     if(sync == 0x2a & ((ack & v) | (!ack & type != 0)) & source != 0 & dest != 0 & source != dest){
         return 1;
     }
@@ -45,9 +44,7 @@ int validateHeader(uint32_t header){
 }
 int getFrameId(uint32_t header)
 {
-
     uint32_t frameId = (header >> 16) & 0xFFFF;
-
     if(validateHeader(header) == 1){
         return frameId;
     } else { return -1; }
