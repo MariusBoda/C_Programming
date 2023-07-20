@@ -1,0 +1,56 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Build and Debug (gdb)",
+      "type": "cppdbg",
+      "request": "launch",
+      "preLaunchTask": "Build",
+      "program": "${workspaceFolder}/src/main",
+      "args": [],
+      "cwd": "${workspaceFolder}/src",
+      "stopAtEntry": true,
+      "stopAtConnect": true,
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ],
+      "windows": {
+        "program": "${workspaceFolder}/src/main.exe",
+        "miDebuggerPath": "gdb.exe"
+      },
+      "osx": {
+        "MIMode": "lldb",
+        "externalConsole": false
+      }
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Build and Debug (lldb)",
+      "program": "${workspaceFolder}/src/main",
+      "args": [],
+      "cwd": "${workspaceFolder}/src",
+      "preLaunchTask": "Build",
+      "sourceLanguages": [
+        "c",
+        "cpp"
+      ],
+      "terminal": "integrated"
+    },
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/marius/Desktop/C++_Programming/Module_7/T7.1 Array of pointers",
+      "program": "/Users/marius/Desktop/C++_Programming/Module_7/T7.1 Array of pointers/build/Debug/outDebug"
+    }
+  ]
+}
